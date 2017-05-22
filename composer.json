@@ -1,0 +1,19 @@
+{
+    "name": "rnd/ibp-sdk-php",
+    "type": "library",
+    "description": "Http Client for the IBP API",
+    "keywords": ["http", "rest", "web service", "curl", "client", "HTTP client", "IBP"],
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "SdV\\Ibp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sdv\\Ibp\\Tests\\": "tests/"
+        }
+    }
+}

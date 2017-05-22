@@ -1,0 +1,8 @@
+vendor
+composer.phar
+composer.lock
+phpunit.xml
+.swp
+.DS_Store
+Thumbs.db
+test.php
