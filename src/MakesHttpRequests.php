@@ -16,9 +16,7 @@ trait MakesHttpRequests
      */
     private function get($uri, array $query = [])
     {
-        return $this->request('GET', $uri, [
-            'query' => $query,
-        ]);
+        return $this->request('GET', $uri, $query);
     }
 
     /**
@@ -123,11 +121,19 @@ trait MakesHttpRequests
             ],
         ];
 
-        $response = $this->client->request(
-            $verb,
-            $uri,
-            empty($payload) ? $params : array_merge($params, ['json' => $payload])
-        );
+        if ($verb == 'GET') {
+            $response = $this->client->request(
+                $verb,
+                $uri,
+                empty($payload) ? $params : array_merge($params, ['query' => $payload])
+            );
+        } else {
+            $response = $this->client->request(
+                $verb,
+                $uri,
+                empty($payload) ? $params : array_merge($params, ['json' => $payload])
+            );
+        }
 
         $statusCode = $response->getStatusCode();
 
