@@ -1,8 +1,15 @@
 {
-    "name": "rnd/ibp-sdk-php",
+    "name": "sdv/ibp-sdk-php",
     "type": "library",
-    "description": "Http Client for the IBP API",
-    "keywords": ["http", "rest", "web service", "curl", "client", "HTTP client", "IBP"],
+    "description": "Http Client for the IBP API.",
+    "keywords": ["IBP", "http", "api"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabrice Clementz",
+            "email": "f.clementz@sdv.fr"
+        }
+    ],
     "require": {
         "guzzlehttp/guzzle": "^6.2"
     },
