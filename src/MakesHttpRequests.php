@@ -82,7 +82,14 @@ trait MakesHttpRequests
         ];
 
         if (!empty($payload)) {
-            $params['form_params'] = $payload;
+            $additionnalData = [];
+            foreach ($payload as $key => $value) {
+                $additionnalData[] = [
+                    'name' => $key,
+                    'contents' => $value,
+                ];
+            }
+            $params['multipart'] = array_merge($additionnalData, $params['multipart']);
         }
 
         $response = $this->client->request('POST', $uri, $params);
@@ -119,7 +126,7 @@ trait MakesHttpRequests
         $response = $this->client->request(
             $verb,
             $uri,
-            empty($payload) ? $params : array_merge($params, ['form_params' => $payload])
+            empty($payload) ? $params : array_merge($params, ['json' => $payload])
         );
 
         $statusCode = $response->getStatusCode();
