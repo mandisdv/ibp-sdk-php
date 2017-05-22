@@ -2,6 +2,7 @@
 
 namespace SdV\Ibp\Actions;
 
+use SdV\Ibp\PaginatedResult;
 use SdV\Ibp\Resources\Folder;
 
 trait ManagesFolders
@@ -11,9 +12,14 @@ trait ManagesFolders
      *
      * @return Folder[]
      */
-    public function folders()
+    public function folders(array $query = [])
     {
-        return $this->mapToCollectionOf(Folder::class, $this->get('folders')['data']);
+        $response = $this->get('folders', $query);
+
+        return new PaginatedResult(
+            $this->mapToCollectionOf(Folder::class, $response['data']),
+            $response['meta']
+        );
     }
 
     /**

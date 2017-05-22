@@ -2,6 +2,7 @@
 
 namespace SdV\Ibp\Actions;
 
+use SdV\Ibp\PaginatedResult;
 use SdV\Ibp\Resources\File;
 
 trait ManagesFiles
@@ -13,7 +14,12 @@ trait ManagesFiles
      */
     public function files(array $query = [])
     {
-        return $this->mapToCollectionOf(File::class, $this->get('files')['data']);
+        $response = $this->get('files', $query);
+
+        return new PaginatedResult(
+            $this->mapToCollectionOf(File::class, $response['data']),
+            $response['meta']
+        );
     }
 
     /**

@@ -4,8 +4,14 @@ namespace SdV\Ibp;
 
 class PaginatedResult
 {
+    /**
+     * @var SdV\Ibp\Resource
+     */
     public $items;
 
+    /**
+     * @var array
+     */
     public $meta;
 
     public function __construct($items, $meta)
@@ -21,7 +27,17 @@ class PaginatedResult
      */
     public function currentPage()
     {
-        return 1;
+        return $this->meta['pagination']['current_page'];
+    }
+
+    /**
+     * Renvoie le nombre de pages existantes.
+     *
+     * @return int
+     */
+    public function totalPages()
+    {
+        return $this->meta['pagination']['total_pages'];
     }
 
     /**
@@ -31,7 +47,7 @@ class PaginatedResult
      */
     public function total()
     {
-        return 10;
+        return $this->meta['pagination']['total'];
     }
 
     /**
@@ -41,7 +57,7 @@ class PaginatedResult
      */
     public function perPage()
     {
-        return 25;
+        return $this->meta['pagination']['per_page'];
     }
 
     /**
@@ -51,7 +67,7 @@ class PaginatedResult
      */
     public function hasNextPage()
     {
-        return true;
+        return !empty($this->meta['pagination']['links']['next']);
     }
 
     /**
@@ -61,6 +77,6 @@ class PaginatedResult
      */
     public function hasPreviousPage()
     {
-        return false;
+        return !empty($this->meta['pagination']['links']['previous']);
     }
 }

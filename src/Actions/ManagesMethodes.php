@@ -2,6 +2,7 @@
 
 namespace SdV\Ibp\Actions;
 
+use SdV\Ibp\PaginatedResult;
 use SdV\Ibp\Resources\Methode;
 
 trait ManagesMethodes
@@ -11,8 +12,13 @@ trait ManagesMethodes
      *
      * @return Methode[]
      */
-    public function methodes()
+    public function methodes(array $query = [])
     {
-        return $this->mapToCollectionOf(Methode::class, $this->get('methodes')['data']);
+        $response = $this->get('methodes', $query);
+
+        return new PaginatedResult(
+            $this->mapToCollectionOf(Methode::class, $response['data']),
+            $response['meta']
+        );
     }
 }
