@@ -73,6 +73,6 @@ trait ManagesFiles
      */
     public function deleteMethodeFromFile($fileId, $context)
     {
-        return new File($this->delete("files/$fileId/remove/$context")['data']);
+        return new File($this->delete("files/$fileId/methodes/$context")['data']);
     }
 }
