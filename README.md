@@ -17,6 +17,12 @@ Work in progress.
 
 ## Installation
 
+Installing via composer
+
+```
+composer require sdv/ibp-sdk-php
+```
+
 ## Usage
 
 ```
@@ -174,5 +180,3 @@ $pipelines = $ibp->pipelines();
 ## Credits
 
 Inspired by The [Forge SDK](https://github.com/themsaid/forge-sdk)
-
-
