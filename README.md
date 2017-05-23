@@ -169,6 +169,50 @@ $isDeleted = $ibp->deleteApplication('591d57fe22b60a00e2075f12');
 $methodes = $ibp->methodes();
 ```
 
+#### Récupérer une methode.
+
+```
+$methode = $ibp->methode('5911924f302f600102779d23');
+```
+
+#### Créer une methode.
+
+```
+$methode = $ibp->createMethode([
+    'context' => 'square',
+    'generator' => 'Thumbor',
+    'param' => [
+        'force_ration' => '1:1',
+        'crop_width' => 206,
+        'crop_width' => 206,
+        'crop_x' => 931,
+        'crop_y' => 274,
+    ],
+]);
+```
+
+#### Mettre à jour les infos d'une application.
+
+```
+$methode = $ibp->updateMethode('591d57fe22b60a00e2075f12', [
+    'context' => 'square',
+    'generator' => 'Thumbor',
+    'param' => [
+        'force_ration' => '1:1',
+        'crop_width' => 206,
+        'crop_width' => 206,
+        'crop_x' => 931,
+        'crop_y' => 274,
+    ],
+]);
+```
+
+#### Supprimer une methode
+
+```
+$isDeleted = $ibp->deleteMethode('591d57fe22b60a00e2075f12');
+```
+
 ### Pipelines
 
 #### Récupérer la liste des pipelines.
