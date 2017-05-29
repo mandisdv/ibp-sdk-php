@@ -64,6 +64,24 @@ $ibp->setApplicationToken('APPLICATION-TOKEN-HERE');
 $ibp->setUploadToken('UPLOAD-TOKEN-HERE');
 ```
 
+### Générer un upload token
+
+```
+$token = $ibp
+    ->setApplicationId('app_id')
+    ->setApplicationSecret('app_secret')
+    ->uploadToken('john.doe@example.com', 'https://ibp.xxx.fr');
+```
+
+### Générer un application token
+
+```
+$token = $ibp
+    ->setApplicationId('app_id')
+    ->setApplicationSecret('app_secret')
+    ->applicationToken('https://ibp.xxx.fr');
+```
+
 ### Folders
 
 #### Récupérer la liste des folders.
