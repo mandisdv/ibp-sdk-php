@@ -160,6 +160,16 @@ trait MakesHttpRequests
 
     private function toError(\GuzzleHttp\Psr7\Stream $stream)
     {
-        return new Error(json_decode((string) $stream, true)['error']);
+        $data = json_decode((string) $stream, true);
+
+        if (!is_null($data) && isset($data['error'])) {
+            return new Error($data['error']);
+        }
+
+        return new Error([
+            'status' => '500',
+            'title' => 'Not a valid json response',
+            'messages' => 'Please check your API at ' . $this->baseUri,
+        ]);
     }
 }
