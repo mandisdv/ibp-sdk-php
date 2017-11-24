@@ -4,6 +4,7 @@ namespace SdV\Ibp\Actions;
 
 use SdV\Ibp\PaginatedResult;
 use SdV\Ibp\Resources\Folder;
+use SdV\Ibp\Resources\File;
 
 trait ManagesFolders
 {
@@ -85,5 +86,19 @@ trait ManagesFolders
         $this->delete("folders/$folderId/files/$fileId");
 
         return true;
+    }
+
+    /**
+     * Récupère tous les files d'un folder
+     * @param  string $folderId Idenditifiant du foler
+     * @return File[]
+     */
+    public function getFilesInFolder($folderId, array $query = []) {
+        $response = $this->get("folders/{$folderId}/files", $query);
+
+        return new PaginatedResult(
+            $this->mapToCollectionOf(File::class, $response['data']),
+            $response['meta']
+        );
     }
 }
